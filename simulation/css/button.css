@@ -1,0 +1,71 @@
+
+  /* .button-container {
+    display: flex;
+    gap: 20px;
+  } */
+  
+  .button {
+    
+    padding: 12px 25px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .primary {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+    border: 2px solid white;
+    /* border-radius: 50%; */
+  }
+  
+  .primary:hover {
+    background-color: #2980b9;
+  }
+  
+  .secondary {
+    background-color: #e74c3c;
+    color: #fff;
+    box-shadow: 0 6px 8px rgba(231, 76, 60, 0.3);
+    border: 2px solid white;
+  }
+  
+  .secondary:hover {
+    background-color: #c0392b;
+    
+  }
+
+  .tert {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+    border: 2px solid white;
+    /* border-radius: 50%; */
+  }
+  
+  .tert:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Push button styles */
+  .pushed {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  /* Disabled button styles */
+.button[disabled] {
+    background-color: #dcdcdc;
+    color: #888;
+    cursor: not-allowed;
+  }
+  /* Same CSS styles as before */
+
+/* Additional style for the click effect */
+.primary.clicked {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+  

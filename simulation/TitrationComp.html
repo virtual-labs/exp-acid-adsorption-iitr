@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titration Results - Determination of adsorption of acetic acid by charcoal.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/Other.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+    }
+
+    h1,
+    h2,
+    h3,
+    h5 {
+      text-align: center;
+      color: #333;
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 16px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .Chart {
+      background-color: white;
+      border-radius: 5px;
+      height: 600px;
+      width: 1000px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
+
+    canvas {
+      background-color: white;
+      max-width: 100%;
+    }
+
+    #myChart {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 30px;
+      margin: 0 10px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .container-info {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .error-message {
+      background: #fee;
+      border: 1px solid #fcc;
+      color: #c00;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-info">
+    <div style="text-align: center;">
+      <h1>Your Titration is Finished</h1>
+    </div>
+    <h2>Determination of adsorption of acetic acid by charcoal.</h2>
+    <h3>Results</h3>
+
+    <div id="Chart">
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Bottle</th>
+          <th>N1</th>
+          <th>Ce=N2</th>
+          <th>Log Ce</th>
+          <th>N1-N2</th>
+          <th>w=3(N1-N2)</th>
+          <th>w/m</th>
+          <th>Log(w/m)</th>
+        </tr>
+      </thead>
+      <tbody id="resultsTableBody">
+        <!-- Results will be inserted here by JavaScript -->
+      </tbody>
+    </table>
+
+    <h5>1/n= <span id="mValue">0.000</span></h5>
+    <h5>Log K = <span id="kValue">0.000</span></h5>
+
+    <div class="button-container">
+      <button onclick="replayExperiment()">
+        Replay <span style="font-weight: bolder; font-size: 18px">&#8634;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Include required modules -->
+  <script src="js/calculations.js"></script>
+  <script src="js/dataStorage.js"></script>
+
+  <script>
+    let experimentData = null;
+    let myChart = null;
+
+    // Load and display results on page load
+    window.addEventListener("load", () => {
+      experimentData = dataStorage.loadExperimentData();
+
+      if (!experimentData) {
+        console.error("No experiment data found. Redirecting to Master...");
+        document.body.innerHTML =
+          '<div class="error-message"><h3>Error: No experiment data found</h3><p>Redirecting to start a new experiment...</p></div>';
+        setTimeout(() => {
+          window.location.href = "Master.html";
+        }, 2000);
+      } else {
+        displayResults();
+        createChart();
+      }
+    });
+
+    /**
+     * Display results in the table
+     */
+    function displayResults() {
+      const tbody = document.getElementById("resultsTableBody");
+      const resultsData = experimentData.results_data;
+
+      resultsData.forEach((sample) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>Sample${sample.sample}</td>
+          <td>${sample.N1.toFixed(2)}</td>
+          <td>${sample.Ce.toFixed(3)}</td>
+          <td>${sample.logCe.toFixed(3)}</td>
+          <td>${sample.N_diff.toFixed(3)}</td>
+          <td>${sample.w.toFixed(3)}</td>
+          <td>${sample.w_by_m.toFixed(3)}</td>
+          <td>${sample.log_w_by_m.toFixed(3)}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Display m and k values
+      document.getElementById("mValue").textContent = experimentData.m.toFixed(3);
+      document.getElementById("kValue").textContent = experimentData.logK.toFixed(3);
+    }
+
+    /**
+     * Create Chart.js graph
+     */
+    function createChart() {
+      const labels = experimentData.logCe.map((val) => val.toFixed(2));
+      const sales = experimentData.logxDm;
+
+      // Define comparison line data (first and last points)
+      const comparisonData = [
+        { x: labels[0], y: sales[0] + 0.01 },
+        { x: labels[labels.length - 1], y: sales[sales.length - 1] + 0.01 },
+      ];
+
+      const ctx = document.getElementById("myChart").getContext("2d");
+
+      myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Log(w/m)",
+              data: sales,
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+              pointRadius: 5,
+              pointBackgroundColor: "rgb(75, 192, 192)",
+            },
+            {
+              label: "Straight line",
+              data: comparisonData,
+              fill: false,
+              borderColor: "rgba(255, 99, 132, 0.5)",
+              borderDash: [5, 5],
+              pointRadius: 4,
+              pointBackgroundColor: "rgba(255, 99, 132, 0.5)",
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: "Log(w/m)",
+                font: {
+                  family: "Poppins",
+                },
+              },
+              reverse: true,
+              beginAtZero: true,
+              min: -5,
+              max: 5,
+              ticks: {
+                maxTicksLimit: 15,
+                stepSize: 1,
+                font: {
+                  family: "Poppins",
+                },
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Log(Ce)",
+                font: {
+                  family: "Poppins",
+                },
+              },
+              ticks: {
+                font: {
+                  family: "Poppins",
+                },
+              },
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: "top",
+              font: {
+                family: "Poppins",
+              },
+            },
+            title: {
+              display: true,
+              text: "Adsorption Analysis",
+              font: {
+                family: "Poppins",
+              },
+            },
+          },
+        },
+      });
+    }
+
+    /**
+     * Replay the experiment
+     */
+    function replayExperiment() {
+      dataStorage.clearAll();
+      window.location.href = "Master.html";
+    }
+  </script>
+</body>
+</html>

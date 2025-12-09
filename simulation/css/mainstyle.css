@@ -1,0 +1,231 @@
+
+
+
+
+
+
+.simulation{
+ 
+  margin: 10px;
+  padding: 2px;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+   background-color: white;
+ 
+}
+.popup{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#canvasContainer {
+ height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border:5px solid  rgba(192, 189, 189, 0.500);
+  border-radius: 6px;
+   background-color: white;
+  box-shadow: 2px 2px rgb(73, 160, 120);
+
+
+}
+
+#flexbox {
+  position: fixed;
+  right: 3vw;
+  top: 7vh;
+}
+
+.canvasflex {
+  
+  display: flex;
+margin-top: 0;
+/* padding:7vh 0 2vh 0; */
+  width: 70vw;
+  height: 92vh;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  /* border: 5px solid rgba(192, 189, 189, 0.636); */
+  /* background-color:#F4F8FC; */
+  background-color: #F4F8FC;
+  border-radius: 2px;
+
+}
+
+.heading{
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      justify-content: center;
+  width: 100vw;
+  height: auto;
+  margin-bottom: 0;
+  padding: 10px 0 10px 0;
+    background-color:#F4F8FC;
+
+}
+
+  .text-box {
+    width: 80%;
+    /* padding: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: flex-start; */
+    
+    background-color: #F4F8FC;;
+    box-shadow: 2px 2px rgb(73, 160, 120);;
+    margin: 5px 10% 4vh 10%;
+  }
+
+.width {
+  width: 40vw;
+}
+
+.button-container {
+  display: flex;
+  width: 95 vw;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  justify-content: space-around;
+  margin-top: 0;
+  background-color: white;
+  padding: 3px;
+  box-shadow: 2px 2px rgb(73, 160, 120);
+}
+
+.result-container {
+  width: 90%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  box-shadow:2px 2px rgb(73, 160, 120);
+  margin: 2px;
+   background-color: white;
+}
+.result {
+  width: 18rem;
+  height: 2.5rem;
+  background-color: #ffffff;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #03425a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.result:hover {
+  transform: scale(1.05);
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width:500px) {
+    .simulation{
+  display: flex; 
+  flex-direction: coloumn;
+  overflow: auto;
+
+  
+background-color: white;
+ 
+}
+  #canvasContainer {
+    width: 98%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+  
+  }
+
+
+
+  .canvasflex {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100 vh;
+    height: auto;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #9ec1a3;
+
+    border: 5px solid rgba(192, 189, 189, 0.636);
+
+  }
+
+  .result-container {
+    width: 90%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2px;
+  }
+  .result {
+    width: 17rem;
+    height: 2.5rem;
+    background-color: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #03425a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+
+  .button-container{
+    display: flex;
+    width: 98 vw;
+    border-radius: 10px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    justify-content: space-around;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+
+  }
+  .text-box{
+      width: 95%;
+      margin: 2% 0 2% 0;
+
+  }
+
+
+}

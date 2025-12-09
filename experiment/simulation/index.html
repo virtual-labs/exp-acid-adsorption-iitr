@@ -1,13 +1,122 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<html lang="en">
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determination of adsorption of acetic acid by charcoal.</title>
+    <link rel="stylesheet" href="css/mainstyle.css">
+    <link rel="stylesheet" href="css/Other.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    </style>
+
+</head>
+
+<body>
+   <h1 class="heading">Determination of adsorption of acetic acid by charcoal.</h1>
+
+    <div id="thumbnail-container" class="box">
+        <button class="btn btn-primary btn-sm" id="runsetup" onclick="toggleFullScreen()"><i
+            class=" fa-solid fa-xl fa-maximize" style="color: #9ec1a3;"></i></button>
+        <div id="video-container">
+            <video id="video" width="800" height="600">
+
+                <source src="videos/introVideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <img src="images/bg1.png" id="Thumbnail" alt="Thumbnail">
+        <button id="play-button" onclick="startVideo()">▶</button>
+        <img src="images/Forward.png" alt="Forward" id="next-button" onclick="nextVideo()">
+        <!-- <button id="custom-button" onclick="customFunction()">Custom Function</button> -->
+        <button id="skipB" class='mybutton' onclick="skip()" style="display: block; padding: 1px 2px 1px 2px; font-size: 10 px; margin-top: 1px;margin-left: 740px;">Skip <span font-weight:bold>&#187;</span></button>
+    </div>
+    <h1 class="end"></h1>
+
+
+
+
+    <script>
+
+        var videos = ["videos/introVideo.mp4", "videos/nextVideo.mp4","3rd.mp4"]; // Add your video sources here
+        var currentVideoIndex = 0;
+        var video = document.getElementById('video');
+        var videoContainer = document.getElementById('video-container');
+        var startButton = document.getElementById('play-button');
+        var nextButton = document.getElementById('next-button');
+        var thumbnail = document.getElementById('Thumbnail');
+
+        video.addEventListener('ended', () => {
+            video.play();
+            nextButton.style.display = 'block';
+            // customButton.style.display = 'block';
+        });
+        function startVideo() {
+            console.log('hi')
+            videoContainer.style.display = 'block';
+            video.src = videos[currentVideoIndex];
+            video.play();
+            startButton.style.display = 'none';
+            thumbnail.style.display = 'none';
+        }
+        setTimeout(() => {
+  const skipB = document.getElementById('skipB');
+
+  // 👇 removes element from DOM
+  skipB.style.display = 'block';
+
+  // 👇 hides element (still takes up space on page)
+  // box.style.visibility = 'hidden';
+}, 2000);
+        function skip(){
+          window.location.href = 'Master.html';
+        }
+
+        function nextVideo() {
+            if (currentVideoIndex == 1||currentVideoIndex == 0) {
+                currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                video.src = videos[currentVideoIndex];
+                video.play();
+                nextButton.style.display = 'none';
+            }
+            else if (currentVideoIndex == 2) {
+                window.location.href = 'Master.html';
+            }
+        }
+        function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+          document.documentElement.msRequestFullscreen();
+        }
+        // toggleDiv.classList.add('custom-fullscreen');
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari & Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+          document.msExitFullscreen();
+        }
+        // toggleDiv.classList.remove('custom-fullscreen');
+      }
+    }
+
+    </script>
+
 </body>
+
 </html>

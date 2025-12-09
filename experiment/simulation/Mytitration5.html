@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Determination of adsorption of acetic acid by charcoal - Sample 5</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mainstyle.css">
+  <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="Other.css">
+</head>
+
+<body>
+  <H1>Determination of adsorption of acetic acid by charcoal - Sample 5</H1>
+  <div id="flexbox"></div>
+
+  <div id="container1">
+    <div id='textbox' class="rectangle">
+      <span id="displayText">Click start button.</span>
+      <button class="button1" onclick="changeText()"><i class="fa-solid fa-forward fa-xl"></i></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <button class="btn btn-primary btn-sm" id="runsetup" onclick="toggleFullScreen()"><i
+        class=" fa-solid fa-xl fa-maximize" style="color: #70a9a1;"></i></button>
+    <button class="help-button" onclick="showHelp()"><i class="fa-solid fa-circle-info fa-xl"></i></button>
+    <div class="canvasflex">
+
+      <div id="canvasContainer">
+        <script src="Mainfile5.js"></script>
+      </div>
+
+      <div class="form-group">
+        <div class="button-container">
+          <div>
+            <button class="button primary" id="Reset" disabled>Reset</button>
+          </div>
+          <div>
+            <button class="button tert" id="Shake" style="margin-right: 2vw; margin-left: 2vw;">Shake</button>
+          </div>
+
+          <div>
+            <button class="button secondary" id="Start">Start</button>
+          </div>
+        </div>
+        <div class="slider-container">
+          <div class="slider-box"><label for="speed_change">Nozzle Open: <span class="slider-value" id="speed">2
+                <span></span></label>
+            <input type="range" class="slider" id="speed_change" min="1" max="5" value="2" step="1">
+          </div>
+
+          <div class="result-container">
+            <h5>Volume added(H2SO4): </h5>
+            <div id="valueDisplay" style="margin-left: 10px;" class="result">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include required modules -->
+  <script src="calculations.js"></script>
+  <script src="dataStorage.js"></script>
+
+  <script>
+    // Initialize data from storage
+    let experimentData = null;
+    let currentSample = 5;
+
+    // Load data on page load
+    window.addEventListener("load", () => {
+      experimentData = dataStorage.loadExperimentData();
+      if (!experimentData) {
+        console.error("No experiment data found. Redirecting to Master...");
+        setTimeout(() => {
+          window.location.href = "Master.html";
+        }, 1000);
+      } else {
+        console.log("Loaded experiment data:", experimentData);
+        initializeSampleData();
+      }
+    });
+
+    /**
+     * Initialize data for current sample
+     */
+    function initializeSampleData() {
+      // Get current sample data
+      const sampleData = experimentData.results_data[currentSample - 1];
+
+      // Create data attributes for p5.js to read
+      const data1 = document.createElement("div");
+      data1.id = "data1";
+      data1.setAttribute("data-php-variable", experimentData.N_Titrant);
+      document.body.appendChild(data1);
+
+      const data2 = document.createElement("div");
+      data2.id = "data2";
+      data2.setAttribute("data-php-variable", sampleData.V_Titrate);
+      document.body.appendChild(data2);
+
+      const data3 = document.createElement("div");
+      data3.id = "data3";
+      data3.setAttribute("data-php-variable", sampleData.Ce);
+      document.body.appendChild(data3);
+
+      const data4 = document.createElement("div");
+      data4.id = "data4";
+      data4.setAttribute("data-php-variable", sampleData.N1);
+      document.body.appendChild(data4);
+
+      console.log("Sample data initialized for sample", currentSample);
+    }
+
+    const textArray = [
+      "Click start button.",
+      "Fix the nozzle opening size by nozzle open slider. Shake the flask while Titrating.",
+      "Titrate the solution till it turn to orange-red.",
+      "",
+    ];
+    let currentIndex = 0;
+    const displayText = document.getElementById("displayText");
+    const box = document.getElementById("textbox");
+
+    function changeText() {
+      currentIndex = (currentIndex + 1) % textArray.length;
+      displayText.textContent = textArray[currentIndex];
+      if (currentIndex == textArray.length - 1) {
+        box.style.display = "none";
+      }
+    }
+
+    function showHelp() {
+      box.style.display = "block";
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+    }
+
+    $(document).ready(function () {
+      var slider = $("#speed_change");
+      var sliderValue = $("#speed");
+
+      slider.on("input", function () {
+        var value = slider.val();
+        sliderValue.text(value);
+      });
+    });
+
+    const clickMeButton = document.getElementById("Reset");
+    const submitButton = document.getElementById("Start");
+
+    clickMeButton.addEventListener("click", () => {
+      if (!submitButton.classList.contains("pushed")) {
+        console.log("Click Me button clicked!");
+      }
+    });
+
+    submitButton.addEventListener("click", () => {
+      submitButton.classList.toggle("pushed");
+      clickMeButton.disabled = submitButton.classList.contains("pushed");
+    });
+
+    clickMeButton.addEventListener("click", () => {
+      clickMeButton.classList.add("clicked");
+
+      setTimeout(() => {
+        clickMeButton.classList.remove("clicked");
+      }, 200);
+    });
+  </script>
+</body>
+
+</html>

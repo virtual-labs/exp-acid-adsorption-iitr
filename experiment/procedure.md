@@ -10,3 +10,8 @@ Follow these steps to determine the constituents and amount of alkalinity in the
 7. The solutions from each bottle are filtered in separate beaker (labeled as No. 1-5) through a clean and dry filter paper. After rejecting the first 5ml of the filtrate collect it.
 8. Titrate 10 ml of filtrate of each beaker separately against 0.1N solution of NaOH using phenolphthalein as an indicator till the end point (appearance of pink color) is reached.  
 9. Repeat the process for concordant reading. The time for which charcoal remains in contact with acetic acid in different bottles is kept constant.  
+
+#### **Slide-1 Procedure**
+1. Click start button.
+2. Fix the nozzle opening size by nozzle open slider. Shake the flask while Titrating.
+3. Titrate the solution till it turn to orange-red.

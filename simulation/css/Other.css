@@ -1,0 +1,154 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    margin: 0;
+    background-color: #cfe0c3;
+    /* background-image: url('bgimg.png'); */
+    /* background-position: ; */
+    /* background-size: cover;  */
+
+    font-family: 'Poppins', sans-serif;
+    color: #1f363d;
+}
+.heading{
+    margin: 20px;
+    background-color: #cfe0c3;
+}
+#thumbnail-container {
+    position: relative;
+}
+
+#video-container {
+    display: none;
+    position: relative;
+    top: auto;
+    left: auto;
+
+
+    /* //transform: translate(-50%, -50%); */
+}
+
+#play-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 48%;
+    right: 48%;
+    background: #1f363d;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+}
+
+#next-button {
+    display: none;
+}
+
+#next-button {
+    position: absolute;
+    top: 48%;
+    right: 15%;
+    width: 40px;
+    height: 40px;
+}
+.box {
+    position: relative;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  
+    background-color: #70a9a1;
+    box-shadow: 2px 2px #40798c;
+    margin: 2px;
+    overflow: hidden; 
+  }
+  .box::before {
+    content: "Determination of adsorption";
+    display: block;
+    font-size: 18px;
+    color: white;
+    /* text-align: center; */
+    padding-bottom: 5px; /* Adjust this value as needed */
+    padding: 5px 10px 5px 5px;
+}
+.help-button {
+    position: absolute;
+    top: 5px; /* Adjust top position as needed */
+    right: 60px; /* Adjust right position as needed */
+    background-color: #e3efda;
+    color: #70a9a1;
+    border: none;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.rectangle {
+    position: fixed;
+    display: block;
+    top: 90vh;
+    left: 24vw;
+    /* background: linear-gradient(to right, #40798ce3, #70a9a161); */
+    background-color: #1f363de4;
+    /* Faded rectangle background color */
+    color: white;
+    padding: 10px;
+    width: 50vw;
+    /* height: 20px; */
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .rectangle button {
+    background-color: #cbd2d719;
+    /* font-size: large; */
+    font-weight: bold;
+    color: white;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* margin-left: 2%; */
+    margin: 3px;
+  }
+  #runsetup {
+    position: absolute;
+    top: 5px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    background-color: #e3efda;
+    color: #70a9a1;
+    border: none;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.end{
+    /* background-color: #9ec1a3; */
+    height: 15vh;
+}
+.mybutton{
+    font-family: 'Poppins', sans-serif;
+    background-color:#407986 !important;
+    border: 2px solid white;
+    box-shadow: 3px 3px #1f363d;
+    color: white;
+    border-radius: 20px;
+    font-size: 16px;
+    margin: 20px 2px 0 2px ;
+    transition: transform 0.3s ease;
+    padding: 6px;
+}
+.mybutton:hover{
+    color: #cfe0c3 !important;
+    transform: scale(1.1);
+}

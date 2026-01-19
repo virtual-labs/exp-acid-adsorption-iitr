@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Which of the following is commonly used for its large surface area and porous structure in adsorption experiments?",
+    "answers": {
+      "a": "Sand",
+      "b": "Charcoal",
+      "c": "Plastic",
+      "d": "Glass"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "What is the purpose of rinsing the charcoal with a solvent after equilibrium is reached in the adsorption experiment?",
+    "answers": {
+      "a": "To remove unadsorbed acetic acid",
+      "b": "To increase the acidity of the solution",
+      "c": "To enhance the adsorption capacity",
+      "d": "To dissolve the charcoal"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "How is the concentration of acetic acid in the solution typically analyzed after equilibrium is reached in the experiment?",
+    "answers": {
+      "a": "Titration",
+      "b": "Spectrophotometry",
+      "c": "Chromatography",
+      "d": "All of the above"
+    },
+    "correctAnswer": "d"
+  },
+  {
+    "question": "The amount of acetic acid adsorbed per unit mass of charcoal is expressed in terms of:",
+    "answers": {
+      "a": "Density",
+      "b": "Solubility",
+      "c": "Adsorption capacity",
+      "d": "Viscosity"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "What does the term ‘equilibrium’ refer to in the context of the adsorption experiment?",
+    "answers": {
+      "a": "The point at which no more adsorption occurs",
+      "b": "The point at which adsorption and desorption rates are equal",
+      "c": "The maximum capacity of charcoal to adsorb acetic acid",
+      "d": "The initial state of the experiment"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Which factor does NOT influence the time required to reach equilibrium in the adsorption experiment?",
+    "answers": {
+      "a": "Initial concentration of acetic acid",
+      "b": "Temperature",
+      "c": "Pressure",
+      "d": "Agitation rate"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "What technique is commonly used to measure the initial concentration of acetic acid in the solution?",
+    "answers": {
+      "a": "Gravimetry",
+      "b": "Titration",
+      "c": "pH measurement",
+      "d": "Conductivity measurement"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Which of the following is NOT a step in the experimental procedure for determining the adsorption of acetic acid by charcoal?",
+    "answers": {
+      "a": "Preparing a solution of acetic acid",
+      "b": "Heating the charcoal to high temperatures",
+      "c": "Allowing the system to reach equilibrium",
+      "d": "Analyzing the concentration of acetic acid in the solution after equilibrium is reached"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "What is the purpose of repeating the experiment under similar conditions?",
+    "answers": {
+      "a": "To increase the total amount of adsorbed acetic acid",
+      "b": "To validate the reliability of results",
+      "c": "To decrease the time required for equilibrium",
+      "d": "To introduce variability in the experimental data"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Which parameter might be varied to investigate its effect on the adsorption of acetic acid by charcoal?",
+    "answers": {
+      "a": "pH of the solution",
+      "b": "Type of container used",
+      "c": "Volume of the solution",
+      "d": "All of the above"
+    },
+    "correctAnswer": "d"
+  }
+]
